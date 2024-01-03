@@ -1,1 +1,15 @@
 to do:complete the simulation of HEMT using DEVSIM
+
+Detail:
+Most physical models or mathematical formulas are coming from the Silvaco guide book, like the Schottky contacts, polarization etc.
+Most material dependent physical parameters is calculated in the .mlx file. For their calculation methods, please refer to Silvaco guide or articles. 
+The  thermionic emission model also refer to the Charon guide book, its description on the direction of current density is complete. So I can use the band gap
+to judge the sign of each terms.
+For the calculation of equilibrium carrier concentration, I derived it based on its equilibrium definition (Φn=Φp=V_applied) and the relationship of the
+surface potential on the Schottky contact. The specific details are in "calculation of carrier_eq.doc"
+I change the DD model to consider the influence of band structure. It is described in Silvao guide book, in part 6.2.1.
+By defining a equivalent potential, I think it can use same discrete form.
+
+
+Code:
+The code mainly comes from the DEVSIM, I have done some changes in original script.
