@@ -618,9 +618,9 @@ def CreateThermionicEmission(device,interface):
     #the alignment of energy bands is determined by the affinity rule 
 
     Therma_Em_expn="ifelse(  Eg@r0>Eg@r1,\
-        -(-An@r0*(Temperature@r0)^2/(nstate_density@r0)*Electrons@r0+\
+        +(-An@r0*(Temperature@r0)^2/(nstate_density@r0)*Electrons@r0+\
         An@r1*(Temperature@r1)^2/(nstate_density@r1)*Electrons@r1*exp((-Delta_Ec*ElectronCharge)/(boltzmannConstant*Temperature@r1))),\
-        -(-An@r0*(Temperature@r0)^2/(nstate_density@r0)*Electrons@r0*exp((-Delta_Ec*ElectronCharge)/(boltzmannConstant*Temperature@r0))+\
+        +(-An@r0*(Temperature@r0)^2/(nstate_density@r0)*Electrons@r0*exp((-Delta_Ec*ElectronCharge)/(boltzmannConstant*Temperature@r0))+\
         An@r1*(Temperature@r1)^2/(nstate_density@r1)*Electrons@r1)  )"
     
 

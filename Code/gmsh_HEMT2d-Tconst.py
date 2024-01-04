@@ -140,12 +140,14 @@ for i in interfaces:
 for c in ("gate",):
     tmp = get_region_list(device=device, contact=c)
     r = tmp[0]
-    CreateDriftDiffusionAtSchottkyContact(device, r, c, workfun=5.0)
+    #CreateDriftDiffusionAtSchottkyContact(device, r, c, workfun=5.0)
+    CreateSiliconDriftDiffusionAtContact(device, r, c)
 
 for c in ("drain", "source"):
     tmp = get_region_list(device=device, contact=c)
     r = tmp[0]
-    CreateDriftDiffusionAtSchottkyContact(device, r, c, workfun=3.93)
+    #CreateDriftDiffusionAtSchottkyContact(device, r, c, workfun=3.93)
+    CreateSiliconDriftDiffusionAtContact(device, r, c)
 
 for c in OhmicContacts:
     tmp = get_region_list(device=device, contact=c)
