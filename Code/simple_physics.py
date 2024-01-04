@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from devsim.python_packages.simple_dd import *
+from simple_dd import *
 from devsim import *
 #TODO: make this a class so that paramters can be changed
 contactcharge_node="contactcharge_node"
@@ -107,6 +107,8 @@ def CreateDensityofStates(device,region):
     CreateNodeModel           (device,  region, "pstate_density", Nv)
     CreateNodeModelDerivative (device,  region, "nstate_density", Nc, "Temperature")
     CreateNodeModelDerivative (device,  region, "pstate_density", Nv, "Temperature")
+    CreateSolution(device, region, "nstate_density:Electrons")
+    CreateSolution(device, region, "pstate_density:Holes")
    
 
 
@@ -616,9 +618,9 @@ def CreateThermionicEmission(device,interface):
     #the alignment of energy bands is determined by the affinity rule 
 
     Therma_Em_expn="ifelse(  Eg@r0>Eg@r1,\
-        -(-An@r0*(Temperature@r0)^2/(nstate_density@r0)*Electrons@r0+\
+        +(-An@r0*(Temperature@r0)^2/(nstate_density@r0)*Electrons@r0+\
         An@r1*(Temperature@r1)^2/(nstate_density@r1)*Electrons@r1*exp((-Delta_Ec*ElectronCharge)/(boltzmannConstant*Temperature@r1))),\
-        -(-An@r0*(Temperature@r0)^2/(nstate_density@r0)*Electrons@r0*exp((-Delta_Ec*ElectronCharge)/(boltzmannConstant*Temperature@r0))+\
+        +(-An@r0*(Temperature@r0)^2/(nstate_density@r0)*Electrons@r0*exp((-Delta_Ec*ElectronCharge)/(boltzmannConstant*Temperature@r0))+\
         An@r1*(Temperature@r1)^2/(nstate_density@r1)*Electrons@r1)  )"
     
 

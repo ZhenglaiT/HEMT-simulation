@@ -11,18 +11,20 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from devsim.python_packages.simple_physics import *
+from simple_physics import *
 from devsim.python_packages.ramp import *
 
 import sys
-sys.path.append("C:\programdata\anaconda3\lib\site-packages")
+#sys.path.append("C:\programdata\anaconda3\lib\site-packages")
 import numpy
 import gmsh_HEMT2d_create
 
-set_parameter(name = "extended_solver", value=True)
-set_parameter(name = "extended_model", value=True)
-set_parameter(name = "extended_equation", value=True)
+if False:
+    set_parameter(name = "extended_solver", value=True)
+    set_parameter(name = "extended_model", value=True)
+    set_parameter(name = "extended_equation", value=True)
 set_parameter(name="threads_available", value=4)
+set_parameter(name="V_t", value=0.0259)
 
 
 device = "HEMT"
@@ -45,6 +47,8 @@ for i in GaN_regions:
 for i in regions:
     CreateSolution(device, i, "Potential")
     CreateSolution(device, i, "Temperature")
+    CreateSolution(device, i, "Temperature:Electrons")
+    CreateSolution(device, i, "Temperature:Holes")
     CreateTinitial(device,i)
     set_node_values(device=device, region=i, name="Temperature", init_from="Init_temperature")
     CreateDensityofStates(device,i)
@@ -94,7 +98,6 @@ for i in ("body",):
 for i in interfaces:
     CreateHeterojunctionInterface(device, i)
 
-
 solve(type="dc", absolute_error=1.0e-13,relative_error=1e-12, maximum_iterations=30)
 solve(type="dc", absolute_error=1.0e-13,relative_error=1e-12, maximum_iterations=30)
 
@@ -137,12 +140,14 @@ for i in interfaces:
 for c in ("gate",):
     tmp = get_region_list(device=device, contact=c)
     r = tmp[0]
-    CreateDriftDiffusionAtSchottkyContact(device, r, c, workfun=5.0)
+    #CreateDriftDiffusionAtSchottkyContact(device, r, c, workfun=5.0)
+    CreateSiliconDriftDiffusionAtContact(device, r, c)
 
 for c in ("drain", "source"):
     tmp = get_region_list(device=device, contact=c)
     r = tmp[0]
-    CreateDriftDiffusionAtSchottkyContact(device, r, c, workfun=3.93)
+    #CreateDriftDiffusionAtSchottkyContact(device, r, c, workfun=3.93)
+    CreateSiliconDriftDiffusionAtContact(device, r, c)
 
 for c in OhmicContacts:
     tmp = get_region_list(device=device, contact=c)
