@@ -13,7 +13,7 @@
 # limitations under the License.  
 
 from devsim import *
-from .model_create import *
+from devsim.python_packages.model_create import *
 
 #Create the drift-diffusion with Possion dependent band structure 
 #Calculate the equivalent potential to use same discrete form
