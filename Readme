@@ -1,5 +1,3 @@
-to do:complete the simulation of HEMT using DEVSIM
-
 Detail:
 Most physical models or mathematical formulas are coming from the Silvaco guide book, like the Schottky contacts, polarization etc.
 Most material dependent physical parameters is calculated in the .mlx file. For their calculation methods, please refer to Silvaco guide or articles. 
