@@ -1,6 +1,6 @@
 from devsim import *
 from devsim.python_packages.simple_dd import *
-from devsim.python_packages.simple_physics import *
+from ZLsimple_physics import *
 from Band_structure_dd import *
 
 contactcharge_node="contactcharge_node"
